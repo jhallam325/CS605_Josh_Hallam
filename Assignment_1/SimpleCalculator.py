@@ -30,8 +30,8 @@ while run_calculator:
         operation = input("Select an operation: ")
 
     result = 0;
-    number1 = int(input1)
-    number2 = int(input2)
+    number1 = float(input1)
+    number2 = float(input2)
     print()
 
     if operation == "1":
