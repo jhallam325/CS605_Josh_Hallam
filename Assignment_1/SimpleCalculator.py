@@ -13,9 +13,26 @@ print("Welcome, to the Simple Calculator of Yesterday!")
 run_calculator = True
 
 while run_calculator:
-    input1 = input("\nEnter your first  number: ")
-    input2 = input("Enter your second number: ")
+    # Source - https://stackoverflow.com/a/16290419
+    # Posted by abarnert, modified by community. See post 'Timeline' for change history
+    # Retrieved 2026-09-03, License - CC BY-SA 3.0
+    while True:
+        try:
+            number1 = float(input ("\nEnter your first number: "))
+        except ValueError:
+            print("Enter a number!")
+        else:
+            break
 
+    while True:
+        try:
+            number2 = float(input ("Enter your second number: "))
+        except ValueError:
+            print("Enter a number!")
+        else:
+            break
+    
+    # My code:
     print("\nSelect an operation:")
     print("1. Addition")
     print("2. Subtraction")
@@ -29,9 +46,6 @@ while run_calculator:
         print("\nYou must choose a whole number 1-4.")
         operation = input("Select an operation: ")
 
-    result = 0;
-    number1 = float(input1)
-    number2 = float(input2)
     print()
 
     if operation == "1":
@@ -44,6 +58,24 @@ while run_calculator:
         result = number1 * number2
         print(f"Result: {number1} * {number2} = {result}")
     else:
+        number2_is_zero = (number2 == 0)
+        while number2_is_zero:
+            first_time_zero = True
+            while True:
+                try:
+                    if first_time_zero:
+                        print("Your number can't be zero, otherwise you'll divide by 0!")
+                    number2 = float(input ("Enter your second number: "))
+                    first_time_zero = False
+                except ValueError:
+                    print("Enter a number!")
+                else:
+                    if (number2 != 0):
+                        number2_is_zero = (number2 == 0)
+                        break
+                    else:
+                        print("Your number can't be zero, otherwise you'll divide by 0!")
+
         result = number1 / number2
         print(f"Result: {number1} / {number2} = {result}")
 
