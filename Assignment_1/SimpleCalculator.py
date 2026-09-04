@@ -1,7 +1,7 @@
 # Source - https://stackoverflow.com/a/518007
 # Posted by Ryan Duffield, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-09-01, License - CC BY-SA 4.0
-
+# This will clear the console screen to get a fresh start for the calculator
 import os
 clear = lambda: os.system('cls')
 clear()
@@ -16,6 +16,7 @@ while run_calculator:
     # Source - https://stackoverflow.com/a/16290419
     # Posted by abarnert, modified by community. See post 'Timeline' for change history
     # Retrieved 2026-09-03, License - CC BY-SA 3.0
+    # This will make sure the input is a number and catch an exception if it isn't
     while True:
         try:
             number1 = float(input ("\nEnter your first number: "))
@@ -58,19 +59,26 @@ while run_calculator:
         result = number1 * number2
         print(f"Result: {number1} * {number2} = {result}")
     else:
+        # We are in the division operation, so I now check to make sure there is no 
+        # division by 0
         number2_is_zero = (number2 == 0)
         while number2_is_zero:
             first_time_zero = True
             while True:
                 try:
                     if first_time_zero:
+                        # This will only print the first time you input 0
                         print("Your number can't be zero, otherwise you'll divide by 0!")
+
+                    # And here I validate the input again to make sure it is a number
                     number2 = float(input ("Enter your second number: "))
                     first_time_zero = False
                 except ValueError:
                     print("Enter a number!")
                 else:
                     if (number2 != 0):
+                        # If number2 isn't zero, we can break the while loop so the loop
+                        # condition is set to false.
                         number2_is_zero = (number2 == 0)
                         break
                     else:
@@ -83,6 +91,7 @@ while run_calculator:
     another_calculation = input("\nWould you like to perform another calculation? (yes/no): ")
     another_calculation = another_calculation.upper()
 
+    # I only check Y and N here so someone can write yeah or nope and still be understood
     while another_calculation[0] != 'Y' and another_calculation[0] != 'N':
         print("\nYou need to choose yes or no.")
         another_calculation = input("Would you like to perform another calculation? (yes/no): ")
